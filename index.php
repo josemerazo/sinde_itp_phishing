@@ -16,7 +16,8 @@ $stmt = $conn->prepare("INSERT INTO registros (ip, mail) VALUES (?, ?)");
 $stmt->bind_param("ss", $ip, $mail);
 
 if ($stmt->execute()) {
-    echo "Gracias por visitarnos";
+    header("Location: https://www.ucsg.edu.ec/ucsg-online/");
+    exit(); // Asegúrate de detener la ejecución del script después de redirigir
 } else {
     echo "Error " . $stmt-error;
 }
