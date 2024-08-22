@@ -1,7 +1,7 @@
 <?php
-$servername = "localhost:3307";
+$servername = "localhost";
 $username = "root";
-$password = "Nokia2005"; // Cambia esto por tu contraseña de MySQL
+$password = "VRhfh!M!.v1N"; // Cambia esto por tu contraseña de MySQL
 $dbname = "sinde";
 
 // Crear conexión

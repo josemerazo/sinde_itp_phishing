@@ -1,12 +1,15 @@
+
 <?php
 include 'db.php';
 
 //Obtener la IP del cliente
 $ip = $_SERVER['REMOTE_ADDR'];
+$mail='';
 
 //Obtener el parámetro 'mail' desde la URL
 if (isset($_GET['mail'])) {
     $mail = $_GET['mail'];
+    //echo "El mail es ". $mail . " ". $ip;
 } else {
     die("El parámetro 'mail' es obligatorio.");
 }
@@ -14,7 +17,7 @@ if (isset($_GET['mail'])) {
 //Preparar y ejecutar la consulta para insertar el registro en la base de datos
 $stmt = $conn->prepare("INSERT INTO registros (ip, mail) VALUES (?, ?)");
 $stmt->bind_param("ss", $ip, $mail);
-
+//var_dump($stmt);
 if ($stmt->execute()) {
     header("Location: https://www.ucsg.edu.ec/ucsg-online/");
     exit(); // Asegúrate de detener la ejecución del script después de redirigir
@@ -24,9 +27,5 @@ if ($stmt->execute()) {
 
 $stmt->close();
 
-//Contar el número de visitas
-$result = $conn->query("SELECT COUNT(1) as total_visitas FROM registros");
-$row = $result->fetch_assoc();
-echo "Total de visitas  ". $row['total_visitas'];
 
 $conn->close();
